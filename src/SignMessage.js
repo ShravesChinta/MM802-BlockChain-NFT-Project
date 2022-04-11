@@ -15,8 +15,6 @@ const signMessage = async ({ setError, message }) => {
     const address = await signer.getAddress();
 
     return {
-      message,
-      signature,
       address
     };
   } catch (err) {
@@ -74,19 +72,8 @@ export default function SignMessage() {
           return (
             <div className="p-2" key={sig}>
               <div className="my-3">
-                <p>
-                  Message {idx + 1}: {sig.message}
-                </p>
                 <p>Signer: {sig.address}</p>
-                <textarea
-                  type="text"
-                  readOnly
-                  ref={resultBox}
-                  className="textarea w-full h-24 textarea-bordered focus:ring focus:outline-none"
-                  placeholder="Generated signature"
-                  value={sig.signature}
-                />
-              </div>
+               </div>
             </div>
           );
         })}
