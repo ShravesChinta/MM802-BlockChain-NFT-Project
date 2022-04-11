@@ -5,9 +5,6 @@ export default function App() {
   return (
     <div className="flex flex-wrap">
       <div className="w-full lg:w-1/2">
-        <p>
-          Hello 
-        </p>
         <SignMessage />
       </div>
       <div className="w-full lg:w-1/2">
