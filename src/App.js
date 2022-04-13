@@ -1,15 +1,18 @@
-import SignMessage from "./SignMessage";
-import VerifyMessage from "./VerifyMessage";
+// import SignMessage from "./SignMessage";
+// import VerifyMessage from "./VerifyMessage";
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import Home from "./pages/Home";
+import AssetsGallery from "./pages/AssetsGallery";
 
 export default function App() {
   return (
-    <div className="flex flex-wrap">
-      <div className="w-full lg:w-1/2">
-        <SignMessage />
-      </div>
-      <div className="w-full lg:w-1/2">
-        <VerifyMessage />
-      </div>
-    </div>
+
+    <Router>
+        <Routes>
+          <Route path="" element={<Home />} />
+          <Route path="/AssetsGallery" element={<AssetsGallery />} />
+        </Routes>
+    </Router>
+
   );
 }
