@@ -18,7 +18,6 @@ const Modal = ({
       <div className="modal">
         <div className="overlay" onClick={handleClick}>
           {/* <p>image is {clickedImg}</p> */}
-          
           <CloseIcon 
             className="closs-modal" 
             fontSize="large" 
