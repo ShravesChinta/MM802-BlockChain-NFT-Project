@@ -1,0 +1,232 @@
+.tag1{
+font-style: inherit;
+font-family:cursive;
+font-weight: bolder;
+font-size:55px;
+text-decoration: underline;
+}
+
+
+
+.tag3{
+    color:white;
+    font-family:cursive;
+    font-weight: bolder;
+    font-size:22px;
+    padding: 10px;
+}
+
+.tag4{
+    color:wheat;
+    font-style:normal;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight:400;
+    font-size:30px;
+}
+
+.App {
+    width: 100%;
+    height: 150%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    background-color:rgb(221, 209, 177);
+  }
+    
+  table {
+    border: 5px solid;
+    width: 800px;
+    height: 200px;
+  }
+    
+  th {
+    border-bottom: 5px solid;
+    padding:20px ;
+    font-size:20px;
+  }
+    
+  td {
+    text-align: center;
+    padding:20px;
+  }
+
+  tr {
+      padding:20px;
+  }
+
+  .tag5{
+      background-color: darkgoldenrod;
+      text-align: center;
+  }
+
+  .tag6{
+      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: 400;
+      border-radius: 5px solid;
+      color:lightseagreen;
+  }
+
+  .gpt3__cta {
+    border: 1px solid white;
+    border-radius: 1rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 2rem;
+    margin: 4rem;
+    background: linear-gradient(135deg, blue, red);
+}
+
+.middle_bg{
+  border: 1px solid white;
+  color: white;
+  border-radius:3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  padding: 1rem;
+  margin: 3rem;
+  background: linear-gradient(127deg,#00a8a8 ,#0000d6 );
+}
+.middle_bg_mini{
+  border: 1px solid white;
+  color: white;
+  border-radius:3rem;
+  display: flex;
+  padding: 1rem;
+  margin: 2rem;
+  background: black;
+}
+
+.gpt3__cta-content p {
+    font-family: var(--font-family);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 30px;
+    color: white;
+}
+
+.middle_bg_mini_text{
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight:bold;
+  font-size:12px;
+  color:white;
+  line-height:15px;
+}
+
+.gpt3__cta-content h3 {
+    font-family: var(--font-family);
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 45px;
+    color:white ;
+}
+
+.gpt3__cta-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.gpt3__cta-btn button {
+    background: #000000;
+    color: #FFFFFF;
+    border-radius: 40px;
+    font-family: var(--font-family);
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 30px;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    min-width: 150px;
+}
+
+@media screen and (max-width: 650px) {
+    .gpt3__cta {
+        flex-direction: column;
+    }
+
+    .gpt3__cta-btn {
+        margin: 2rem 0 0;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .gpt3__cta {
+        margin: 4rem 2rem;
+    }
+
+    .gpt3__cta-content h3 {
+        font-size: 18px;
+        line-height: 32px;
+    }
+  }
+    .nft-btn button {
+        font-size: 14px;
+        line-height: 28px;
+        position:absolute;
+        bottom:10rem;
+        right:40em;
+        font-size:20px;
+        padding: 15px 100px;
+        margin: 10px 4px;
+        color: white;
+        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        display: inline-block;
+        background-color:#00a8a8;
+        border-radius: 30px;
+        font-weight:bold;
+    }
+
+
+.gradient__text {
+  background: var(--gradient-text);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main_first_text{
+  font-weight:bold;
+  font-family:cursive;
+  font-size: 65px;
+}
+
+.middle_first_text{
+  font-weight:bold;
+  font-family:unset;
+  font-size:65px;
+}
+
+.main_second_text{
+  font-weight:bold;
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 25px;
+}
+
+
+figcaption{
+  position:absolute;
+  bottom:20rem;
+  margin:0 2rem;
+  color:white;
+}
+
+.middle1_figcaption{
+position:absolute;
+top: 50rem;
+margin: 0 2rem;
+color:black;
+}
+
+
+
