@@ -14,8 +14,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Divider from '@mui/material/Divider';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Slide from '@mui/material/Slide';
+import Button from '@mui/material/Button';
 
 const drawerWidth = 240;
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 ({ theme, open }) => ({
@@ -64,6 +75,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function AssetsGallery() {
   const [clickedImg, setClickedImg] = useState(null);
+  const [model, setModel] = useState(false);
   const [imageInfo, setImageInfo] = useState('');
 
   const theme = useTheme();
@@ -77,10 +89,20 @@ function AssetsGallery() {
     setOpen(false);
   };
 
+  const handleClickOpen = () => {
+    setModel(true);
+  };
+
+  const handleClose = () => {
+    setModel(false);
+  };
+
   const handleClick = (item, index) => {
     // setCurrentIndex(index);
+    console.log("assets gallery on clicked")
     setClickedImg(item.link);
     setImageInfo(item.text);
+    setModel(true);
     };
     
   return (
@@ -91,7 +113,7 @@ function AssetsGallery() {
         <AppBar position="fixed" open={open}>
         <Toolbar>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            Persistent drawer
+            NFT Assets Gallery
             </Typography>
             <IconButton
             color="inherit"
@@ -106,7 +128,6 @@ function AssetsGallery() {
         </AppBar>
         </Box>
         <Main open={open}>
-        <p>NFT Assets Gallery</p>
         {data.data.map((item, index)=> (
             <div key={index} className="pics">
                 <img 
@@ -117,17 +138,26 @@ function AssetsGallery() {
                 <h2>{item.text}</h2>
             </div>    
         ))}
-        <div>
-            {clickedImg && (
-            <Modal
-                clickedImg={clickedImg}
-                // handelRotationRight={handelRotationRight}
-                setClickedImg={setClickedImg}
-                // handelRotationLeft={handelRotationLeft}
-                imageInfo={imageInfo}
-            />
-            )}
-        </div>
+      <Dialog
+        open={model}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={handleClose}
+        aria-describedby="alert-dialog-slide-description"
+        fullWidth
+        maxWidth='md' 
+      >
+        <DialogTitle>{"Your NFT"}</DialogTitle>
+        <DialogContent>
+
+          <img src={clickedImg} class="center"/>
+        </DialogContent>
+        <DialogActions>
+          {/* <Button onClick={handleClose}>Disagree</Button> */}
+          <Button onClick={handleClose}>Close</Button>
+        </DialogActions>
+      </Dialog>
+
         </Main>
         <Drawer
             sx={{
