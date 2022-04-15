@@ -1,6 +1,8 @@
 import {useState, useRef } from "react";
 import {ethers} from "ethers";
 import ErrorMessage from "./ErrorMessage";
+import AssetsGallery from "./AssetsGallery";
+import {Redirect} from 'react-router-dom';
 
 const signMessage = async ({ setError, message }) => {
   try {
@@ -70,11 +72,12 @@ export default function SignMessage() {
         </footer>
         {signatures.map((sig, idx) => {
           return (
-            <div className="p-2" key={sig}>
-              <div className="my-3">
-                <p>Your BlockChain Account is : {sig.address}</p>
-              </div>
-            </div>
+                  <Redirect  to="/AssetsGallery/" />
+          // <div className="p-2" key={sig}>
+          //    <div className="my-3">
+          //      <p>Your BlockChain Account is : {sig.address}</p>
+          //    </div>
+          //  </div>
           );
         })}
       </div>
