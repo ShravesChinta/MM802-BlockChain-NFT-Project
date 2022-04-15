@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import data from "./data/images.json"
+import React, { useEffect, useState } from "react"
+// import data from "./data/images.json"
 import Modal from "./components/Modal"
 import './AssetsGallery.css'
 import { styled, useTheme } from '@mui/material/styles';
@@ -21,6 +21,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
+import axios from 'axios'
 
 const drawerWidth = 240;
 
@@ -74,12 +75,21 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 function AssetsGallery() {
+  const [data, setData] = useState([]);
   const [clickedImg, setClickedImg] = useState(null);
   const [model, setModel] = useState(false);
   const [imageInfo, setImageInfo] = useState('');
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const endpoint='https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e';
+    fetch(endpoint)
+    .then(response =>response.json())
+    .then(data=>{
+        console.log(data)
+        // this.setState({data:data})
+    });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -104,6 +114,16 @@ function AssetsGallery() {
     setImageInfo(item.text);
     setModel(true);
     };
+
+//   useEffect(() => {
+//     axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
+//       .then(res => {
+//         console.log(res)
+//       })
+//       .catch(err => {
+//         console.log(err)
+//       })
+//   })
     
   return (
     <div className="AssetsGallery"> 
@@ -128,7 +148,9 @@ function AssetsGallery() {
         </AppBar>
         </Box>
         <Main open={open}>
-        {data.data.map((item, index)=> (
+        
+
+        {/* {data.data.map((item, index)=> (
             <div key={index} className="pics">
                 <img 
                     src={item.link} 
@@ -137,7 +159,7 @@ function AssetsGallery() {
                 />
                 <h2>{item.text}</h2>
             </div>    
-        ))}
+        ))} */}
       <Dialog
         open={model}
         TransitionComponent={Transition}
