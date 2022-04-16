@@ -21,7 +21,6 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios'
 
 const drawerWidth = 240;
@@ -76,7 +75,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 function AssetsGallery(props) {
-//   console.log(id);
+  //console.log(id);
   const theme = useTheme();
   const [data, setData] = useState({});
   const [clickedImg, setClickedImg] = useState(null);
@@ -84,10 +83,17 @@ function AssetsGallery(props) {
 //   const [imageInfo, setImageInfo] = useState('');
   
   const [open, setOpen] = React.useState(false);
-  const [account, setAccount] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [account, setAccount] =useState('');
 
-  const [tester,setTester] = useState('');
+//   const endpoint='https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e';
+//     fetch(endpoint)
+//     .then(response =>response.json())
+//     .then(res=>{
+//         // console.log(res)
+//         setData(res);
+//         console.log(data)
+//         // this.setState({data:data})
+//     });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -115,30 +121,29 @@ function AssetsGallery(props) {
 
 
     useEffect( () => {
-        const fetchData = async () => {
-//            await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
-            await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/' + props.match.params.id)
-                .then(res => {
-                    setData(res.data.assets);
-                    console.log(data)
-                    //setTester(res.data.assets[0].creator.address);
-                    // console.log(account)
-                })
-                setLoading(true);
-        };
-
-        fetchData();
-
-        // if (typeof id === 'undefined') {
-        //     console.log("AssetsGallery gets undefined account id");
-        // }
-        // else {
-        //     console.log(id);
-        //     setAccount(id);
-        //     console.log(account);
-        // }
+        // const fetchData = async () => {
+        //     await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
+        //         .then(res => {
+        //             setData(res.data.assets);
+        //             console.log(data)
+        //             setAccount(res.data.assets[0].creator.address);
+        //             // console.log(account)
+        //         })
+        //         .catch(err => {
+        //             console.log(err);
+        //         })
+        // };
+        // fetchData();
+        if (typeof id === 'undefined') {
+            console.log("AssetsGallery gets undefined account id");
+        }
+        else {
+            console.log(id);
+            setAccount(id);
+            console.log(account);
+        }
         
-    }, [tester]);
+    }, []);
 
 
   return (
@@ -167,23 +172,40 @@ function AssetsGallery(props) {
         </AppBar>
         </Box>
         <Main open={open}>
-        
-        {loading ? 
-        (data.map((item, index)=> (
-            <div key={index} className="pics">
-                <img 
-                    src={item.image_url} 
-                    alt={item.id}
-                    onClick={() => handleClick(item, index)}
-                />
-                <h2>{item.text}</h2>
-            </div>    
-        ))
-        ) : 
-        (
-            <CircularProgress />
-        )}
 
+        {/* { (typeof data === 'undefined') ? 
+          <p></p> :
+          <>
+            {data.map((item, index)=> (
+                <div key={index} className="pics">
+                    <img 
+                        src={item.image_url} 
+                        alt={item.id}
+                        onClick={() => handleClick(item, index)}
+                    />
+                    <h2>{item.text}</h2>
+                </div>    
+            ))
+          }
+          </>
+        } */}
+
+        {/* { typeof data != 'undefined' ?
+        <>
+            {data.map((item, index)=> (
+                <div key={index} className="pics">
+                    <img 
+                        src={item.image_url} 
+                        alt={item.id}
+                        onClick={() => handleClick(item, index)}
+                    />
+                    <h2>{item.text}</h2>
+                </div>    
+            ))}       
+        </> :
+        <>{
+            }</>
+        } */}
 
       <Dialog
         open={model}

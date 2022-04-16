@@ -72,13 +72,13 @@ export default function SignMessage() {
         </footer>
         {signatures.map((sig, idx) => {
           return (
-            <div>
-              <AssetsGallery 
-              id={sig.address}
-              />
-              <Redirect  to="/AssetsGallery/" />
-            </div>
-
+            //  <AssetsGallery 
+            //  id={sig.address}
+            //  />
+              //<Redirect  to="/AssetsGallery/" + {sig.address}/>
+             // var path = "/AssetsGallery/" + {sig.address};
+              //<Redirect  to="/AssetsGallery/" + {sig.address}/>
+              <Redirect  to= {"/AssetsGallery/" + sig.address} />
 
           // <div className="p-2" key={sig}>
           //    <div className="my-3">
