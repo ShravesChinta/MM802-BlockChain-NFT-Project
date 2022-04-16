@@ -23,6 +23,8 @@ import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
 import axios from 'axios'
+import {Link} from "react-router-dom";
+
 
 const drawerWidth = 240;
 
@@ -240,6 +242,7 @@ function AssetsGallery(props) {
             </IconButton>
             </DrawerHeader>
             <Divider />
+            <Link to="/"><h4> <b>Home</b></h4></Link>
             {<p>account id: {account}</p>}
             <Divider />
         </Drawer>
