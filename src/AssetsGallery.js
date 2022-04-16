@@ -33,9 +33,9 @@ import {Link} from "react-router-dom";
 
 const drawerWidth = 240;
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
+// const Transition = React.forwardRef(function Transition(props, ref) {
+//     return <Slide direction="up" ref={ref} {...props} />;
+//   });
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 ({ theme, open }) => ({
@@ -223,21 +223,22 @@ function AssetsGallery(props) {
 
       <Dialog
         open={model}
-        TransitionComponent={Transition}
+        // TransitionComponent={Transition}
         keepMounted
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
-        fullWidth
-        maxWidth='md' 
+        fullWidth = 'true'
       >
         
         <DialogTitle><b>{"NFT: " + clickedImgName}</b></DialogTitle>
-        <DialogContent>
-          <img src={clickedImg} />
-          {/* <p> {clickedImgDesc} </p> */}
+        <DialogContent 
+          align="center" 
+          dividers>
+          <img src={clickedImg}/> 
         </DialogContent>
-        <DialogContent>
-          <p> Description: {clickedImgDesc} </p>
+
+        <DialogContent >
+          <p> {clickedImgDesc} </p>
         </DialogContent>
 
         <DialogActions>
