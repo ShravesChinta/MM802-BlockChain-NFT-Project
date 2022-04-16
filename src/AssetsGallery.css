@@ -38,3 +38,19 @@
     padding: 20px 0 20px;
     margin:0 auto;
 }
+
+.dialog .left{
+    width: "49%";
+    margin: "auto";
+    /* textAlign: "left"; */
+    display: "inline-block";
+    margin-left: "5px";
+}
+
+.dialog .right{
+    width: "49%";
+    margin: "auto";
+    /* textAlign: "center"; */
+    display: "inline-block";
+    /* borderLeft: "0.1em solid #e0e0e0"; */
+    margin-left: "5px";}

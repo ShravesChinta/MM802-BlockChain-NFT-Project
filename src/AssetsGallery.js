@@ -22,6 +22,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import MuiGrid from '@mui/material/Grid';
 
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -82,6 +83,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     justifyContent: 'flex-start',
 }));
 
+const Grid = styled(MuiGrid)(({ theme }) => ({
+  width: '100%',
+  ...theme.typography.body2,
+  '& [role="separator"]': {
+    margin: theme.spacing(0, 2),
+  },
+}));
+
 function AssetsGallery(props) {
 //   console.log(id);
   const theme = useTheme();
@@ -132,7 +141,6 @@ function AssetsGallery(props) {
     setModel(true);
     };
 
-
     useEffect( () => {
         const fetchData = async () => {
 //            await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
@@ -179,7 +187,6 @@ function AssetsGallery(props) {
         </AppBar>
         </Box>
         <Main open={open}>
-
 
         <Box sx={{ width: 1000, height: 900, overflowY: 'scroll' }}>
           <ImageList variant="masonry" cols={3} gap={8}>
@@ -228,18 +235,40 @@ function AssetsGallery(props) {
         onClose={handleClose}
         aria-describedby="alert-dialog-slide-description"
         fullWidth = 'true'
+        maxWidth ='md'
       >
         
         <DialogTitle><b>{"NFT: " + clickedImgName}</b></DialogTitle>
-        <DialogContent 
+        <DialogContent dividers>
+          <Grid container>
+            <Grid item xs>
+              <DialogContent 
+                align="center" >
+                <img src={clickedImg}/> 
+              </DialogContent>
+            </Grid>
+            <Divider orientation="vertical" >
+              
+            </Divider>
+            <Grid item xs>
+              <DialogContent >
+                <p> {clickedImgDesc} </p>
+                <p> Some random text</p>
+              </DialogContent>
+            </Grid>
+          </Grid>
+        </DialogContent>
+
+
+        {/* <DialogContent 
           align="center" 
           dividers>
           <img src={clickedImg}/> 
-        </DialogContent>
+        </DialogContent> */}
 
-        <DialogContent >
+        {/* <DialogContent >
           <p> {clickedImgDesc} </p>
-        </DialogContent>
+        </DialogContent> */}
 
         <DialogActions>
           <Button onClick={handleSend}> Send</Button>
