@@ -74,24 +74,16 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     justifyContent: 'flex-start',
 }));
 
-function AssetsGallery() {
-
+function AssetsGallery({id}) {
+  console.log(id);
+  const theme = useTheme();
   const [data, setData] = useState({});
   const [clickedImg, setClickedImg] = useState(null);
   const [model, setModel] = useState(false);
-  const [imageInfo, setImageInfo] = useState('');
-
-  const theme = useTheme();
+//   const [imageInfo, setImageInfo] = useState('');
+  
   const [open, setOpen] = React.useState(false);
-
-  const [account, setAccount] =useState();
-
-//   if(id === undefined) {
-//     console.log("id undefined");
-//   } 
-//   else{
-//     setAccount(id);
-//   }
+  const [account, setAccount] =useState('');
 
 //   const endpoint='https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e';
 //     fetch(endpoint)
@@ -123,40 +115,36 @@ function AssetsGallery() {
     // setCurrentIndex(index);
     console.log("assets gallery on clicked")
     setClickedImg(item.image_url);
-    setImageInfo(item.id);
+    // setImageInfo(item.id);
     setModel(true);
     };
 
 
     useEffect( () => {
-        const fetchData = async () => {
-            await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
-                .then(res => {
-                    setData(res.data.assets);
-                    console.log(data)
-                    setAccount(res.data.assets[0].creator.address);
-                    // console.log(account)
-                })
-                .catch(err => {
-                    console.log(err)
-                })
-        };
-        fetchData();
-    }, account);
+        // const fetchData = async () => {
+        //     await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
+        //         .then(res => {
+        //             setData(res.data.assets);
+        //             console.log(data)
+        //             setAccount(res.data.assets[0].creator.address);
+        //             // console.log(account)
+        //         })
+        //         .catch(err => {
+        //             console.log(err);
+        //         })
+        // };
+        // fetchData();
+        if (typeof id === 'undefined') {
+            console.log("AssetsGallery gets undefined account id");
+        }
+        else {
+            console.log(id);
+            setAccount(id);
+            console.log(account);
+        }
+        
+    }, []);
 
-//   useEffect(() => {
-
-//     await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
-//       .then(res => {
-//         setData(res);
-//         console.log(data)
-//         setAccount(res.data.assets[0].creator.address);
-//         console.log(account)
-//       })
-//       .catch(err => {
-//         console.log(err)
-//       })
-//   },[])
 
   return (
     <div className="AssetsGallery"> 
@@ -167,6 +155,9 @@ function AssetsGallery() {
         <Toolbar>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             NFT Assets Gallery
+            </Typography>
+            <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+            id : {account}
             </Typography>
             <IconButton
             color="inherit"
@@ -182,7 +173,24 @@ function AssetsGallery() {
         </Box>
         <Main open={open}>
 
-        { data != 'undefined' ?
+        {/* { (typeof data === 'undefined') ? 
+          <p></p> :
+          <>
+            {data.map((item, index)=> (
+                <div key={index} className="pics">
+                    <img 
+                        src={item.image_url} 
+                        alt={item.id}
+                        onClick={() => handleClick(item, index)}
+                    />
+                    <h2>{item.text}</h2>
+                </div>    
+            ))
+          }
+          </>
+        } */}
+
+        {/* { typeof data != 'undefined' ?
         <>
             {data.map((item, index)=> (
                 <div key={index} className="pics">
@@ -197,7 +205,7 @@ function AssetsGallery() {
         </> :
         <>{
             }</>
-        }
+        } */}
 
       <Dialog
         open={model}

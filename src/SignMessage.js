@@ -73,9 +73,9 @@ export default function SignMessage() {
         {signatures.map((sig, idx) => {
           return (
             <div>
-              {/* <AssetsGallery 
+              <AssetsGallery 
               id={sig.address}
-              /> */}
+              />
               <Redirect  to="/AssetsGallery/" />
             </div>
 
