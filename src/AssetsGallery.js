@@ -80,6 +80,8 @@ function AssetsGallery(props) {
   const theme = useTheme();
   const [data, setData] = useState({});
   const [clickedImg, setClickedImg] = useState(null);
+  const [clickedImgDesc, setClickedImgDesc] = useState('');
+  const [clickedImgName, setClickedImgName] = useState('');
   const [model, setModel] = useState(false);
 //   const [imageInfo, setImageInfo] = useState('');
   
@@ -105,10 +107,20 @@ function AssetsGallery(props) {
     setModel(false);
   };
 
+  const handleSend = () => {
+
+    alert("Send Button Is Called ...");
+   //setModel(false);
+  };
+
+
+
   const handleClick = (item, index) => {
     // setCurrentIndex(index);
     console.log("assets gallery on clicked")
     setClickedImg(item.image_url);
+    setClickedImgDesc(item.description);
+    setClickedImgName(item.name);
     // setImageInfo(item.id);
     setModel(true);
     };
@@ -120,9 +132,10 @@ function AssetsGallery(props) {
             await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/' + props.match.params.id)
                 .then(res => {
                     setData(res.data.assets);
-                    console.log(data)
-                    //setTester(res.data.assets[0].creator.address);
-                    // console.log(account)
+                    //console.log(data);
+                    setAccount(res.data.assets[0].creator.address);
+                   //setTester(res.data.assets[0].creator.address);
+                    console.log("Account:" + account);
                 })
                 setLoading(true);
         };
@@ -149,11 +162,11 @@ function AssetsGallery(props) {
         <AppBar position="fixed" open={open}>
         <Toolbar>
             <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
-            NFT Assets Gallery
+            Browse Your NFTs 
             </Typography>
-            <Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
+            {/*<Typography variant="h6" noWrap sx={{ flexGrow: 1 }} component="div">
             id : {account}
-            </Typography>
+            </Typography>*/}
             <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -176,7 +189,8 @@ function AssetsGallery(props) {
                     alt={item.id}
                     onClick={() => handleClick(item, index)}
                 />
-                <h2>{item.text}</h2>
+                <h4 padding-left= "50 px"> <b>{item.name} </b> </h4>
+                <br></br>
             </div>    
         ))
         ) : 
@@ -194,12 +208,15 @@ function AssetsGallery(props) {
         fullWidth
         maxWidth='md' 
       >
-        <DialogTitle>{"Your NFT"}</DialogTitle>
+        
+        <DialogTitle><b>{"NFT: " + clickedImgName}</b></DialogTitle>
         <DialogContent>
-          <img src={clickedImg} class="center"/>
+          <img src={clickedImg} />
+          <p> {clickedImgDesc} </p>
         </DialogContent>
+
         <DialogActions>
-          {/* <Button onClick={handleClose}>Disagree</Button> */}
+          <Button onClick={handleSend}> Send</Button>
           <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
@@ -223,7 +240,7 @@ function AssetsGallery(props) {
             </IconButton>
             </DrawerHeader>
             <Divider />
-                <p>account id: {account}</p>
+            {<p>account id: {account}</p>}
             <Divider />
         </Drawer>
     </div>
