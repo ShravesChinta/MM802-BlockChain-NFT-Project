@@ -75,7 +75,8 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 }));
 
 function AssetsGallery() {
-  const [data, setData] = useState([]);
+
+  const [data, setData] = useState({});
   const [clickedImg, setClickedImg] = useState(null);
   const [model, setModel] = useState(false);
   const [imageInfo, setImageInfo] = useState('');
@@ -83,13 +84,24 @@ function AssetsGallery() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const endpoint='https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e';
-    fetch(endpoint)
-    .then(response =>response.json())
-    .then(data=>{
-        console.log(data)
-        // this.setState({data:data})
-    });
+  const [account, setAccount] =useState();
+
+//   if(id === undefined) {
+//     console.log("id undefined");
+//   } 
+//   else{
+//     setAccount(id);
+//   }
+
+//   const endpoint='https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e';
+//     fetch(endpoint)
+//     .then(response =>response.json())
+//     .then(res=>{
+//         // console.log(res)
+//         setData(res);
+//         console.log(data)
+//         // this.setState({data:data})
+//     });
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -110,21 +122,42 @@ function AssetsGallery() {
   const handleClick = (item, index) => {
     // setCurrentIndex(index);
     console.log("assets gallery on clicked")
-    setClickedImg(item.link);
-    setImageInfo(item.text);
+    setClickedImg(item.image_url);
+    setImageInfo(item.id);
     setModel(true);
     };
 
+
+    useEffect( () => {
+        const fetchData = async () => {
+            await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
+                .then(res => {
+                    setData(res.data.assets);
+                    console.log(data)
+                    setAccount(res.data.assets[0].creator.address);
+                    // console.log(account)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        };
+        fetchData();
+    }, account);
+
 //   useEffect(() => {
-//     axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
+
+//     await axios.get('https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e')
 //       .then(res => {
-//         console.log(res)
+//         setData(res);
+//         console.log(data)
+//         setAccount(res.data.assets[0].creator.address);
+//         console.log(account)
 //       })
 //       .catch(err => {
 //         console.log(err)
 //       })
-//   })
-    
+//   },[])
+
   return (
     <div className="AssetsGallery"> 
       {/* https://mui.com/material-ui/react-drawer/ */}
@@ -148,18 +181,24 @@ function AssetsGallery() {
         </AppBar>
         </Box>
         <Main open={open}>
-        
 
-        {/* {data.data.map((item, index)=> (
-            <div key={index} className="pics">
-                <img 
-                    src={item.link} 
-                    alt={item.text}
-                    onClick={() => handleClick(item, index)}
-                />
-                <h2>{item.text}</h2>
-            </div>    
-        ))} */}
+        { data != 'undefined' ?
+        <>
+            {data.map((item, index)=> (
+                <div key={index} className="pics">
+                    <img 
+                        src={item.image_url} 
+                        alt={item.id}
+                        onClick={() => handleClick(item, index)}
+                    />
+                    <h2>{item.text}</h2>
+                </div>    
+            ))}       
+        </> :
+        <>{
+            }</>
+        }
+
       <Dialog
         open={model}
         TransitionComponent={Transition}
@@ -171,7 +210,6 @@ function AssetsGallery() {
       >
         <DialogTitle>{"Your NFT"}</DialogTitle>
         <DialogContent>
-
           <img src={clickedImg} class="center"/>
         </DialogContent>
         <DialogActions>
@@ -199,7 +237,7 @@ function AssetsGallery() {
             </IconButton>
             </DrawerHeader>
             <Divider />
-                <p>account id</p>
+                <p>account id: {account}</p>
             <Divider />
         </Drawer>
     </div>

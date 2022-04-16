@@ -72,7 +72,14 @@ export default function SignMessage() {
         </footer>
         {signatures.map((sig, idx) => {
           return (
-                  <Redirect  to="/AssetsGallery/" />
+            <div>
+              {/* <AssetsGallery 
+              id={sig.address}
+              /> */}
+              <Redirect  to="/AssetsGallery/" />
+            </div>
+
+
           // <div className="p-2" key={sig}>
           //    <div className="my-3">
           //      <p>Your BlockChain Account is : {sig.address}</p>
