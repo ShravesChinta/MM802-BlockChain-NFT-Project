@@ -22,6 +22,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+
 import axios from 'axios'
 import {Link} from "react-router-dom";
 
@@ -174,13 +179,37 @@ function AssetsGallery(props) {
         </AppBar>
         </Box>
         <Main open={open}>
+
+
+        <Box sx={{ width: 1000, height: 900, overflowY: 'scroll' }}>
+          <ImageList variant="masonry" cols={3} gap={8}>
+          {loading ? 
+          (data.map((item, index)=> (
+            <ImageListItem key={item.img} className="pics">
+                <img 
+                  src={item.image_url} 
+                  alt={item.id}
+                  style={{width: '100%'}}
+
+                  onClick={() => handleClick(item, index)}
+                />
+                <ImageListItemBar position="below" title={item.name} />
+                <br></br>
+            </ImageListItem>
+          ))
+          ) : 
+          (<CircularProgress />)}
+          </ImageList>
+        </Box>
         
+        {/* <div  className="AssetsGallery">
         {loading ? 
         (data.map((item, index)=> (
             <div key={index} className="pics">
                 <img 
                     src={item.image_url} 
                     alt={item.id}
+
                     onClick={() => handleClick(item, index)}
                 />
                 <h4 padding-left= "50 px"> <b>{item.name} </b> </h4>
@@ -188,9 +217,8 @@ function AssetsGallery(props) {
             </div>    
         ))
         ) : 
-        (
-            <CircularProgress />
-        )}
+        (<CircularProgress />)}
+        </div> */}
 
 
       <Dialog
@@ -209,7 +237,7 @@ function AssetsGallery(props) {
           {/* <p> {clickedImgDesc} </p> */}
         </DialogContent>
         <DialogContent>
-          <p> {clickedImgDesc} </p>
+          <p> Description: {clickedImgDesc} </p>
         </DialogContent>
 
         <DialogActions>
