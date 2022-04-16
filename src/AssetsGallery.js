@@ -138,20 +138,12 @@ function AssetsGallery(props) {
                     setAccount(res.data.assets[0].creator.address);
                    //setTester(res.data.assets[0].creator.address);
                     console.log("Account:" + account);
+                    console.log(data);
                 })
                 setLoading(true);
         };
 
         fetchData();
-
-        // if (typeof id === 'undefined') {
-        //     console.log("AssetsGallery gets undefined account id");
-        // }
-        // else {
-        //     console.log(id);
-        //     setAccount(id);
-        //     console.log(account);
-        // }
         
     }, [tester]);
 
@@ -214,6 +206,9 @@ function AssetsGallery(props) {
         <DialogTitle><b>{"NFT: " + clickedImgName}</b></DialogTitle>
         <DialogContent>
           <img src={clickedImg} />
+          {/* <p> {clickedImgDesc} </p> */}
+        </DialogContent>
+        <DialogContent>
           <p> {clickedImgDesc} </p>
         </DialogContent>
 
