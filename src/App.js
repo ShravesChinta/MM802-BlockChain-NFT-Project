@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from "./Home";
 import SignMessage from "./SignMessage";
 import AssetsGallery from "./AssetsGallery";
+import SendMessage from "./SendMessage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/" exact component ={Home}/>
           <Route path="/SignMessage" exact component={SignMessage}/>
           <Route path="/AssetsGallery/:id" exact component={AssetsGallery}/>
+          <Route path="/SendMessage/:id" exact component ={SendMessage}/>
         </Switch>
       <Footer />
       </Router>

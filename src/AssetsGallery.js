@@ -28,9 +28,11 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
+import SendMessage from "./SendMessage";
 import axios from 'axios'
 import {Link} from "react-router-dom";
-
+import {Redirect} from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -123,13 +125,6 @@ function AssetsGallery(props) {
     setModel(false);
   };
 
-  const handleSend = () => {
-
-    alert("Send Button Is Called ...");
-   //setModel(false);
-  };
-
-
 
   const handleClick = (item, index) => {
     // setCurrentIndex(index);
@@ -187,6 +182,7 @@ function AssetsGallery(props) {
         </AppBar>
         </Box>
         <Main open={open}>
+
 
         <Box sx={{ width: 1000, height: 900, overflowY: 'scroll' }}>
           <ImageList variant="masonry" cols={3} gap={8}>
@@ -253,7 +249,6 @@ function AssetsGallery(props) {
             <Grid item xs>
               <DialogContent >
                 <p> {clickedImgDesc} </p>
-                <p> Some random text</p>
               </DialogContent>
             </Grid>
           </Grid>
@@ -271,7 +266,9 @@ function AssetsGallery(props) {
         </DialogContent> */}
 
         <DialogActions>
-          <Button onClick={handleSend}> Send</Button>
+          <Link to={"/SendMessage/"+ account}>
+          <button> Send </button>
+          </Link>
           <Button onClick={handleClose}>Close</Button>
         </DialogActions>
       </Dialog>
