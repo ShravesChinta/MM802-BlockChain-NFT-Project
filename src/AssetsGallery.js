@@ -28,7 +28,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
-import SendMessage from "./chat/App";
+import SendMessage from "./chat/SendMessage";
 import axios from 'axios'
 import {Link} from "react-router-dom";
 import {Redirect} from 'react-router-dom';
@@ -99,6 +99,7 @@ function AssetsGallery(props) {
   const [data, setData] = useState({});
   const [clickedImg, setClickedImg] = useState(null);
   const [clickedImgDesc, setClickedImgDesc] = useState('');
+  const [clickedImgURL, setClickedImgURL] = useState('');
   const [clickedImgName, setClickedImgName] = useState('');
   const [model, setModel] = useState(false);
 //   const [imageInfo, setImageInfo] = useState('');
@@ -130,6 +131,9 @@ function AssetsGallery(props) {
     // setCurrentIndex(index);
     console.log("assets gallery on clicked")
     setClickedImg(item.image_url);
+
+    var passURL = item.image_url.replaceAll("/", "$");
+    setClickedImgURL(passURL);
     setClickedImgDesc(item.description);
     setClickedImgName(item.name);
     // setImageInfo(item.id);
@@ -266,7 +270,7 @@ function AssetsGallery(props) {
         </DialogContent> */}
 
         <DialogActions>
-          <Link to={"/SendMessage/"+ account}>
+          <Link to={"/SendMessage/" + clickedImgURL}>
           <button> Send </button>
           </Link>
           <Button onClick={handleClose}>Close</Button>

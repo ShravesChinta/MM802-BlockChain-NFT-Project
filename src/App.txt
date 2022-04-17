@@ -4,7 +4,7 @@ import Middle from "./Middle";
 import Footer from "./Footer";
 import Middle1 from './Middle1';
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Home from "./Home";
 import SignMessage from "./SignMessage";
 import AssetsGallery from "./AssetsGallery";
@@ -17,12 +17,12 @@ const App = () => {
     <>
       <Router>
         <Navbar/>
-          <Switch>
-          <Route path="/" exact component={Home}/>
+        <Routes>
+          <Route path="/" exact component ={Home}/>
           <Route path="/SignMessage" exact component={SignMessage}/>
           <Route path="/AssetsGallery/:id" exact component={AssetsGallery}/>
-          <Route path="/SendMessage/:id" exact component ={SendMessage}/>
-          </Switch>
+          <Route path="/SendMessage/" exact component ={SendMessage}/>
+        </Routes>
       <Footer />
       </Router>
     </>

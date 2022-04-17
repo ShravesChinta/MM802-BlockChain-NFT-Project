@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDom from "react-dom";
-import { App } from "../src/App.jsx";
+import {SendMessage} from "SendMessage.jsx";
 
 ReactDom.render( 
-    <App /> ,
+    <SendMessage /> ,
     document.getElementById('root')
 );
