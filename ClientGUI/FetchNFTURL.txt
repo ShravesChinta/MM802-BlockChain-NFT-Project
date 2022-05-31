@@ -1,0 +1,1 @@
+https://test-server-nft.azurewebsites.net/api/getNFT/0x1C2DB58d008854e2a77611829c9E7c04De2B411e
